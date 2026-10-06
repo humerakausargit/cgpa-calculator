@@ -1,0 +1,786 @@
+/* ==========================================================================
+   Desktop-Only Stylesheet: Academic CGPA & SGPA Evaluation System
+   Strictly designed for desktop viewports (1100px fixed width).
+   No mobile responsive rules, unscaled desktop fonts, compact inputs/buttons.
+   ========================================================================== */
+
+/* Reset & Base Rules */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 13px; /* Fixed desktop base size */
+}
+
+body {
+  min-width: 1150px; /* Enforces strict desktop canvas */
+  width: 100%;
+  background-color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #1e293b;
+  padding: 24px 0 40px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fixed Width Main Container */
+.desktop-container {
+  width: 1100px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+/* Header Area */
+.app-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.header-badge {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  margin: 0 0 2px 0;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.scale-selector-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.scale-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.select-desktop {
+  height: 26px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.select-desktop:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.select-scale {
+  width: 250px;
+  font-weight: 500;
+}
+
+.utility-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* Button Foundations (Compact Desktop Sizes) */
+.btn {
+  height: 28px;
+  padding: 0 11px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+  user-select: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-utility {
+  height: 25px;
+  padding: 0 9px;
+  font-size: 11px;
+  background-color: #334155;
+  color: #f1f5f9;
+  border: 1px solid #475569;
+}
+
+.btn-utility:hover {
+  background-color: #475569;
+  color: #ffffff;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: #f8fafc;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.btn-danger-outline {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+  background-color: transparent;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+
+.btn-danger-outline:hover {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+}
+
+.btn-icon-danger {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1;
+  background-color: transparent;
+  color: #94a3b8;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-icon-danger:hover {
+  color: #dc2626;
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+}
+
+/* Main Content Workspace */
+.main-content {
+  padding: 20px 24px 28px 24px;
+  background-color: #ffffff;
+}
+
+/* Sections */
+.semesters-section {
+  margin-bottom: 20px;
+}
+
+.section-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.section-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.2px;
+}
+
+.subsection-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.section-tag {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 1px solid #bae6fd;
+}
+
+/* Semester Panel Card (Fixed Desktop Width) */
+.semester-card {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background-color: #ffffff;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.semester-card-header {
+  background-color: #f8fafc;
+  padding: 8px 14px;
+  border-bottom: 1px solid #cbd5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.semester-title-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.semester-name-input {
+  height: 24px;
+  width: 180px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+  padding: 1px 6px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.semester-name-input:hover {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+}
+
+.semester-name-input:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.semester-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.semester-sgpa-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e293b;
+  background-color: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid #cbd5e1;
+}
+
+.semester-sgpa-pill strong {
+  color: #2563eb;
+}
+
+/* Standard Desktop Table Layout */
+.desktop-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Standard Desktop strict cell widths */
+  background-color: #ffffff;
+}
+
+.desktop-table thead th {
+  background-color: #f1f5f9;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #cbd5e1;
+  border-right: 1px solid #e2e8f0;
+  text-align: left;
+  user-select: none;
+}
+
+.desktop-table thead th:last-child {
+  border-right: none;
+}
+
+.desktop-table tbody td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #f1f5f9;
+  font-size: 12px;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.desktop-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.desktop-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+.desktop-table tfoot td {
+  background-color: #f8fafc;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  border-top: 2px solid #cbd5e1;
+  border-right: 1px solid #e2e8f0;
+}
+
+.desktop-table tfoot td:last-child {
+  border-right: none;
+}
+
+/* Small Inputs within Table */
+.input-desktop {
+  width: 100%;
+  height: 25px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  outline: none;
+}
+
+.input-desktop:focus {
+  border-color: #2563eb;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.input-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.input-text {
+  text-align: left;
+}
+
+.readonly-stat {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  padding: 2px 4px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Add Course Footer Toolbar */
+.semester-table-toolbar {
+  padding: 6px 10px;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-sm {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+}
+
+.add-semester-bottom-bar {
+  text-align: center;
+  padding: 6px 0 12px 0;
+}
+
+/* ==========================================================================
+   PRIMARY ACTION PANEL: Calculate and Reset placed DIRECTLY ADJACENT
+   ========================================================================== */
+.execution-panel {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 18px 0 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Placed directly adjacent to each other with a tight desktop gap */
+.execution-actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Directly adjacent buttons */
+}
+
+.btn-calculate {
+  height: 30px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #1d4ed8;
+  border: 1px solid #1e40af;
+  box-shadow: 0 1px 2px rgba(29, 78, 216, 0.25);
+}
+
+.btn-calculate:hover {
+  background-color: #1e40af;
+  border-color: #172554;
+}
+
+.btn-calculate:active {
+  background-color: #172554;
+  transform: translateY(1px);
+}
+
+.btn-reset {
+  height: 30px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #b91c1c;
+  background-color: #ffffff;
+  border: 1px solid #fca5a5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-reset:hover {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+.btn-reset:active {
+  background-color: #fee2e2;
+  transform: translateY(1px);
+}
+
+.execution-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.meta-note strong {
+  color: #1e293b;
+}
+
+/* Results Dashboard (Fixed Desktop Architecture) */
+.results-dashboard {
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.status-indicator {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.status-indicator.ready {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+/* KPI Summary Cards Grid (Fixed 5-Column Desktop Grid) */
+.kpi-cards-grid {
+  display: flex;
+  gap: 12px;
+  width: 1050px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  flex: 1;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kpi-card.highlight-card {
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+  box-shadow: inset 0 2px 0 #2563eb;
+}
+
+.kpi-card.honor-card {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+  box-shadow: inset 0 2px 0 #16a34a;
+}
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.highlight-card .kpi-value {
+  color: #1d4ed8;
+}
+
+.standing-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #15803d;
+  line-height: 1.2;
+}
+
+.kpi-sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Breakdown Table Area */
+.breakdown-container {
+  margin-top: 10px;
+}
+
+.breakdown-container .subsection-title {
+  margin-bottom: 8px;
+}
+
+.breakdown-table th, .breakdown-table td {
+  padding: 6px 10px;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.status-pass {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.status-warn {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.status-fail {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Reference Section (Fixed Two-Column Desktop Grid) */
+.reference-section {
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 16px 20px;
+  background-color: #f8fafc;
+}
+
+.reference-header {
+  margin-bottom: 12px;
+}
+
+.ref-subtitle {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.reference-tables-grid {
+  display: flex;
+  gap: 18px;
+  width: 1050px;
+}
+
+.legend-table {
+  width: 530px;
+}
+
+.legend-table th, .legend-table td {
+  padding: 5px 8px;
+}
+
+.formulas-card {
+  width: 502px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+
+.formulas-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.formula-item {
+  margin-bottom: 10px;
+}
+
+.formula-item:last-child {
+  margin-bottom: 0;
+}
+
+.formula-name {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 2px;
+}
+
+.formula-math {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 11px;
+  color: #0f172a;
+  background-color: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 3px;
+  border: 1px solid #e2e8f0;
+}
+
+/* App Footer */
+.app-footer {
+  background-color: #f1f5f9;
+  border-top: 1px solid #cbd5e1;
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Print Sheet Styling (Standard Desktop Printable Report) */
+@media print {
+  body {
+    background-color: #ffffff;
+    padding: 0;
+  }
+  .desktop-container {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+  }
+  .header-right,
+  .section-toolbar-right,
+  .semester-header-actions,
+  .semester-table-toolbar,
+  .add-semester-bottom-bar,
+  .execution-panel,
+  .btn-icon-danger {
+    display: none !important;
+  }
+  .desktop-table {
+    border: 1px solid #333333;
+  }
+  .desktop-table th, .desktop-table td {
+    border: 1px solid #666666;
+  }
+}

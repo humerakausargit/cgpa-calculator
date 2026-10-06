@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CGPA Calculator - Desktop Academic Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Desktop Main Container (Fixed Width) -->
+  <div class="desktop-container">
+
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="header-badge">DESKTOP WORKSTATION</div>
+        <h1 class="header-title">Academic CGPA & SGPA Calculator</h1>
+        <p class="header-subtitle">Comprehensive Semester Grade Point Average & Cumulative Evaluation Engine</p>
+      </div>
+      <div class="header-right">
+        <div class="scale-selector-box">
+          <label for="grading-scale" class="scale-label">Grading System:</label>
+          <select id="grading-scale" class="select-desktop select-scale">
+            <option value="10" selected>10.0 Scale (O / A+ / A / B+ / B / C / P / F)</option>
+            <option value="4">4.0 Scale (US / Standard 4.0 GPA System)</option>
+          </select>
+        </div>
+        <div class="utility-buttons">
+          <button type="button" id="btn-sample-data" class="btn btn-utility" title="Fill with sample academic records">Load Sample Data</button>
+          <button type="button" id="btn-export-csv" class="btn btn-utility" title="Export report to CSV">Export CSV</button>
+          <button type="button" id="btn-print" class="btn btn-utility" title="Print academic summary sheet">Print Sheet</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace Content -->
+    <main class="main-content">
+
+      <!-- Semesters Container -->
+      <section class="semesters-section">
+        <div class="section-toolbar">
+          <div class="section-toolbar-left">
+            <h2 class="section-title">Semester Records & Coursework</h2>
+            <span class="section-tag" id="semester-count-tag">1 Semester Active</span>
+          </div>
+          <div class="section-toolbar-right">
+            <button type="button" id="btn-add-semester" class="btn btn-secondary">+ Add Semester</button>
+          </div>
+        </div>
+
+        <div id="semesters-list">
+          <!-- Semester tables injected by JavaScript -->
+        </div>
+
+        <!-- Add Semester Bottom Button -->
+        <div class="add-semester-bottom-bar">
+          <button type="button" id="btn-add-semester-bottom" class="btn btn-secondary">+ Add Another Semester</button>
+        </div>
+      </section>
+
+      <!-- Primary Action Controls: Calculate & Reset DIRECTLY ADJACENT -->
+      <section class="execution-panel">
+        <div class="execution-actions-group">
+          <button type="button" id="btn-calculate" class="btn btn-calculate">Calculate CGPA</button>
+          <button type="button" id="btn-reset" class="btn btn-reset">Reset</button>
+        </div>
+        <div class="execution-meta">
+          <span class="meta-note">Click <strong>Calculate CGPA</strong> to update cumulative statistics. Calculations adhere to standard weighted credit-point formulas.</span>
+        </div>
+      </section>
+
+      <!-- Output / Results Dashboard -->
+      <section id="results-dashboard" class="results-dashboard">
+        <div class="results-header">
+          <h2 class="section-title">Academic Performance Summary</h2>
+          <span class="status-indicator ready" id="status-badge">Results Computed</span>
+        </div>
+
+        <!-- KPI Summary Cards (Fixed Desktop Layout) -->
+        <div class="kpi-cards-grid">
+          <div class="kpi-card highlight-card">
+            <div class="kpi-label">Cumulative GPA (CGPA)</div>
+            <div class="kpi-value" id="kpi-cgpa">0.00</div>
+            <div class="kpi-sub" id="kpi-scale-label">Out of 10.00 max points</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Total Credits Completed</div>
+            <div class="kpi-value" id="kpi-credits">0</div>
+            <div class="kpi-sub" id="kpi-semesters-count">Across 0 Semesters</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Total Quality Points</div>
+            <div class="kpi-value" id="kpi-points">0.00</div>
+            <div class="kpi-sub">&Sigma; (Credits &times; Grade Points)</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Estimated Percentage</div>
+            <div class="kpi-value" id="kpi-percentage">0.00%</div>
+            <div class="kpi-sub" id="kpi-percentage-formula">Standard formula conversion</div>
+          </div>
+
+          <div class="kpi-card honor-card">
+            <div class="kpi-label">Academic Standing</div>
+            <div class="kpi-value standing-text" id="kpi-standing">Pending Calculation</div>
+            <div class="kpi-sub" id="kpi-honor-sub">Degree classification rating</div>
+          </div>
+        </div>
+
+        <!-- Semester Breakdown Desktop Table -->
+        <div class="breakdown-container">
+          <h3 class="subsection-title">Semester-wise Progression Breakdown</h3>
+          <table class="desktop-table breakdown-table" id="breakdown-table">
+            <thead>
+              <tr>
+                <th style="width: 140px;">Semester</th>
+                <th style="width: 110px; text-align: center;">Course Count</th>
+                <th style="width: 120px; text-align: right;">Semester Credits</th>
+                <th style="width: 130px; text-align: right;">Quality Points</th>
+                <th style="width: 130px; text-align: right;">Semester GPA (SGPA)</th>
+                <th style="width: 130px; text-align: right;">Cumulative Credits</th>
+                <th style="width: 130px; text-align: right;">Cumulative CGPA</th>
+                <th style="width: 170px;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="breakdown-tbody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Grading Reference Legend (Standard Desktop Layout) -->
+      <section class="reference-section">
+        <div class="reference-header">
+          <h3 class="subsection-title">Grading Scale Conversion Reference</h3>
+          <span class="ref-subtitle">Point distribution mapped to letter classifications</span>
+        </div>
+        <div class="reference-tables-grid">
+          <table class="desktop-table legend-table" id="legend-table">
+            <thead>
+              <tr>
+                <th style="width: 90px;">Grade</th>
+                <th style="width: 110px; text-align: right;">Grade Points</th>
+                <th style="width: 180px;">Performance Level</th>
+                <th style="width: 140px;">Marks Equivalent</th>
+              </tr>
+            </thead>
+            <tbody id="legend-tbody">
+              <!-- Populated based on selected scale -->
+            </tbody>
+          </table>
+
+          <div class="formulas-card">
+            <h4 class="formulas-title">Calculation Formulas & Standards</h4>
+            <div class="formula-item">
+              <span class="formula-name">Semester GPA (SGPA):</span>
+              <div class="formula-math">SGPA = &Sigma; (Course Credits &times; Grade Points) / &Sigma; (Semester Credits)</div>
+            </div>
+            <div class="formula-item">
+              <span class="formula-name">Cumulative GPA (CGPA):</span>
+              <div class="formula-math">CGPA = &Sigma; (Total Quality Points Earned) / &Sigma; (Total Credits Attempted)</div>
+            </div>
+            <div class="formula-item">
+              <span class="formula-name">Percentage Equivalency:</span>
+              <div class="formula-math" id="formula-percentage-desc">10.0 Scale: Percentage (%) = CGPA &times; 9.5 (or [CGPA - 0.75] &times; 10)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Desktop Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>Desktop Grade Point Audit System &bull; Version 2.4.0</span>
+      </div>
+      <div class="footer-right">
+        <span>Fixed Desktop Architecture (Non-Responsive) &bull; 1100px Matrix</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
